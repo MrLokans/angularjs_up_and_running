@@ -9,8 +9,8 @@
                ng-model="name"
                placeholder="Enter the name">
 
-        <h2>{{ ctrl.helloMsg }} <span ng-bind="name"></span></h2>
-        <h2>{{ ctrl.goodbyeMsg }} <span ng-bind="name"></span></h2>
+        <h2>{{ ctrl.message }} <span ng-bind="name"></span></h2>
+        <button ng-click="ctrl.changeMessage()">Change the message!</button>
 
         <script src="scripts/angular.min.js"></script>
         <script type="text/javascript">
@@ -19,9 +19,14 @@
             // First items are dependencies' names and the rest is the controller function 
             .controller('MainController', [function(){
                 console.log('MainController has been created.');
-                this.helloMsg = 'Hello';
-                // w/o 'this' this var won't be accessible in the controller
-                var goodbyeMsg = 'Goodbye';
+                this.message = 'Hello';
+                this.changeMessage = function() {
+                    if (this.message === 'Hello') {
+                        this.message = 'Goodbye';
+                    } else {
+                        this.message = 'Hello';
+                    }
+                };
             }]);
         </script>
     </body>
