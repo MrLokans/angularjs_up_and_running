@@ -11,6 +11,12 @@
 
         <h2>{{ ctrl.message }} <span ng-bind="name"></span></h2>
         <button ng-click="ctrl.changeMessage()">Change the message!</button>
+        
+        <div ng-repeat="note in ctrl.notes">
+            <input type="checkbox" ng-model="note.done"></input>
+            <span class="is_done">{{ note.text }}</span>
+        </div>
+
 
         <script src="scripts/angular.min.js"></script>
         <script type="text/javascript">
@@ -19,10 +25,11 @@
             // First items are dependencies' names and the rest is the controller function 
             .controller('MainController', [function(){
                 console.log('MainController has been created.');
-                // it's bette to use proxy object for 'this' var to be sure, that the correct 
+                // it's better to use proxy object for 'this' var to be sure, that the correct 
                 // the correct 'this' instance is used
                 var self = this;
                 self.message = 'Hello';
+
                 self.changeMessage = function() {
                     if (self.message === 'Hello') {
                         self.message = 'Goodbye';
@@ -30,6 +37,14 @@
                         self.message = 'Hello';
                     }
                 };
+
+                self.notes = [
+                    {id: 1, text: 'Note 1', done: true},
+                    {id: 2, text: 'Note 2', done: true},
+                    {id: 3, text: 'Note 3', done: true},
+                    {id: 4, text: 'Note 4', done: false},
+                    {id: 5, text: 'Note 5', done: false},
+                ];
             }]);
         </script>
     </body>
