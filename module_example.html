@@ -19,12 +19,15 @@
             // First items are dependencies' names and the rest is the controller function 
             .controller('MainController', [function(){
                 console.log('MainController has been created.');
-                this.message = 'Hello';
-                this.changeMessage = function() {
-                    if (this.message === 'Hello') {
-                        this.message = 'Goodbye';
+                // it's bette to use proxy object for 'this' var to be sure, that the correct 
+                // the correct 'this' instance is used
+                var self = this;
+                self.message = 'Hello';
+                self.changeMessage = function() {
+                    if (self.message === 'Hello') {
+                        self.message = 'Goodbye';
                     } else {
-                        this.message = 'Hello';
+                        self.message = 'Hello';
                     }
                 };
             }]);
